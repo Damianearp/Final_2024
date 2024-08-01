@@ -51,7 +51,7 @@ From the graph above on guy count, we can see a clear difference in the count of
 
 on the percentage graph we can see that more that two thirds the guys that took the placebo still got covid compared to the guys that took the vaccine.
 
-### Numerical resuts (guys)
+### Numerical resuts (Male)
 
 ```{r}
 table1 <- xtabs(~infected + treatment, data=M)
@@ -59,7 +59,7 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-### Inferential (guys)
+### Inferential (Male)
 
 ```{r}
 chisq.test(table1)
@@ -71,7 +71,7 @@ Mfish
 ## Females
 
 ```{r}
-dd2 <- gal %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+dd2 <- F %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
 
 # the group_by followed by summarize(count=n())
@@ -87,12 +87,90 @@ basicCC + geom_bar(stat="identity", position = "dodge")
 
 I'm not surprised when I look above at our data on the gals, its almost identical to the guys! However looking at the percentage it looks like half the gals who took placebo still got infected compared to the gals that took the vaccine.
 
+### Numerical resuts (Female)
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=F)
+rowPerc(table1)
+colPerc(table1)
+```
+
+### Inferential (Female)
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+Ffish <- fisher.test(table1)
+Ffish
+```
 
 ## LGBTQ
 
+```{r}
+dd2 <- LGBTQ %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+### Numerical resuts (LGBTQ)
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=LGBTQ)
+rowPerc(table1)
+colPerc(table1)
+```
+
+### Inferential (LGBTQ)
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+LGBTQfish <- fisher.test(table1)
+LGBTQfish
+```
 
 ## Druggies
+
+```{r}
+dd2 <- DrugUser %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+
+
+# the group_by followed by summarize(count=n())
+
+basicC <- ggplot(dd2,aes(x=infected,y=count,fill=treatment))
+basicC + geom_bar(stat="identity",position="dodge")
+
+#Now for percentage plot
+
+basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
+basicCC + geom_bar(stat="identity", position = "dodge")
+```
+
+### Numerical resuts (DrugUser)
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=DrugUser)
+rowPerc(table1)
+colPerc(table1)
+```
+
+### Inferential (DrugUser)
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+DrugUserfish <- fisher.test(table1)
+DrugUserfish
+```
 
 
 # Overall Results and Conclusions
