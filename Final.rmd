@@ -27,8 +27,8 @@ A new  preventative vaccine (covid921) is under test in clinical trials. Given t
 #Code to Seperate Groups
 
 ```{r}
-guy = filter(FinalData, sex =="guy")
-gal = filter(FinalData, sex =="gal")
+guy = filter(FinalData, sex =="M")
+gal = filter(FinalData, sex =="F")
 gay = filter(FinalData, LGBTQ =="gay")
 Druguser = filter(FinalData, DrugUser =="yes")
 ```
@@ -39,7 +39,7 @@ In order to make accurate intervals, we have separated each of the guys, gals, g
 ## Males
 
 ```{r}
-dd2 <- guys %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
+dd2 <- guy %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
 
 # the group_by followed by summarize(count=n())
@@ -53,13 +53,12 @@ basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
-From the graph above we can see a clear difference in the count of people who were infected when taking the placebo vs the vaccine, comparing who had covid, we can say the vaccine is working!
+From the graph above on guy count, we can see a clear difference in the count of people who were infected when taking the placebo vs the vaccine, comparing who had covid, we can say the vaccine is working!
 
-on the percentage graph we can see that more that half the guys that took the placebo still got covid compared to the guys that took the vaccine
+on the percentage graph we can see that more that two thirds the guys that took the placebo still got covid compared to the guys that took the vaccine
 
 
 ## Females
-
 
 
 ## LGBTQ
