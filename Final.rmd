@@ -55,8 +55,24 @@ basicCC + geom_bar(stat="identity", position = "dodge")
 
 From the graph above on guy count, we can see a clear difference in the count of people who were infected when taking the placebo vs the vaccine, comparing who had covid, we can say the vaccine is working!
 
-on the percentage graph we can see that more that two thirds the guys that took the placebo still got covid compared to the guys that took the vaccine
+on the percentage graph we can see that more that two thirds the guys that took the placebo still got covid compared to the guys that took the vaccine.
 
+### Numerical resuts (guys)
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=guy)
+rowPerc(table1)
+colPerc(table1)
+```
+
+### Inferential (guys)
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+guysfish <- fisher.test(table1)
+guysfish
+```
 
 ## Females
 
@@ -75,7 +91,7 @@ basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
-Im not surprised when I look above at our data on the gals, its almost identical to the guys! However looking at the percentage it looks like half the gals who took placibo still got infected compared to the gals that took the vaccine.
+I'm not surprised when I look above at our data on the gals, its almost identical to the guys! However looking at the percentage it looks like half the gals who took placebo still got infected compared to the gals that took the vaccine.
 
 
 ## LGBTQ
