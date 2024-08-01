@@ -47,9 +47,14 @@ basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
-From the graph above on guy count, we can see a clear difference in the count of people who were infected when taking the placebo vs the vaccine, comparing who had covid, we can say the vaccine is working!
+The Graph above shows the outcome of who was infected even after taking the placebo and/or vaccine respectfully 
 
-on the percentage graph we can see that more that two thirds the guys that took the placebo still got covid compared to the guys that took the vaccine.
+
+From the graph above we can see a clear difference in the count of people who were infected when taking the placebo vs the vaccine. about 74% of The guys who took the placebo still got COVID-19, while comparing to the 27% of guys who got the vaccine who had covid.
+
+This graph shows that Males should reccomend getting the vaccine over placebo due to the risk placebo shows of still getting covid.
+
+
 
 ### Numerical resuts (Male)
 
@@ -58,6 +63,9 @@ table1 <- xtabs(~infected + treatment, data=M)
 rowPerc(table1)
 colPerc(table1)
 ```
+
+Above we can see 26% of the people who got the vaccine still ended up getting covid, while 74% of them that took placebo got it
+
 
 ### Inferential (Male)
 
