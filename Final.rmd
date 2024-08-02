@@ -52,7 +52,7 @@ The Graph above shows the outcome of who was infected even after taking the plac
 
 From the graph above we can see a clear difference in the count of people who were infected when taking the placebo vs the vaccine. about 74% of The guys who took the placebo still got COVID-19, while comparing to the 27% of guys who got the vaccine who had covid.
 
-This graph shows that Males should reccomend getting the vaccine over placebo due to the risk placebo shows of still getting covid.
+This graph shows that Males should recommend getting the vaccine over placebo due to the risk placebo shows of still getting covid.
 
 
 
@@ -64,7 +64,7 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
-Above we can see 26% of the people who got the vaccine still ended up getting covid, while 74% of them that took placebo got it
+Above we can see 26% of the people who got the vaccine still ended up getting covid, while 74% of them that took placebo got it. Looking at the percentages its a 3:1 ratio for people to get covid with placebo treatment compared to vaccine.
 
 
 ### Inferential (Male)
@@ -75,6 +75,8 @@ chisqtestGC(table1)
 Mfish <- fisher.test(table1)
 Mfish
 ```
+
+Based on the data provided, the Covid vaccine appears to be associated with a higher likelihood of contracting Covid-19 among male participants. further backing up my statement on how males should take the vaccine over placebo.
 
 ## Females
 
@@ -103,6 +105,9 @@ rowPerc(table1)
 colPerc(table1)
 ```
 
+The data above shows that females who received the Covid vaccine had a lowerchance of Covid-19 infections compared to those who received the placebo. This reduction in infection rates supports the conclusion that the Covid vaccine is effective and should be recommended for females.
+
+
 ### Inferential (Female)
 
 ```{r}
@@ -111,6 +116,8 @@ chisqtestGC(table1)
 Ffish <- fisher.test(table1)
 Ffish
 ```
+
+The vaccine appears to significantly reduce the risk of infection compared to the placebo, with the odds ratio supporting this conclusion.
 
 ## LGBTQ
 
@@ -128,6 +135,8 @@ basicC + geom_bar(stat="identity",position="dodge")
 basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment)) 
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
+
+
 
 ### Numerical resuts (LGBTQ)
 
