@@ -136,7 +136,7 @@ basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
-
+From the graph above we can see that 80% of the gays that took the placebo still got covid compared to the gays that took the vaccine. 
 
 ### Numerical resuts (LGBTQ)
 
@@ -145,6 +145,8 @@ table1 <- xtabs(~infected + treatment, data=LGBTQ)
 rowPerc(table1)
 colPerc(table1)
 ```
+
+Based on the percentages, the vaccine appears to be effective, as it is associated with a lower percentage of infected individuals (20%) compared to the placebo (80%). 
 
 ### Inferential (LGBTQ)
 
@@ -172,6 +174,8 @@ basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
+Holy- That doesn't look good for the vaccine, over 91% of the drug users get Covid while 8% of the placebo users get covid. Maybe all the drugs that the drug users take could have an effect on why the vaccine isnt working?
+
 ### Numerical resuts (DrugUser)
 
 ```{r}
@@ -179,6 +183,8 @@ table1 <- xtabs(~infected + treatment, data=DrugUser)
 rowPerc(table1)
 colPerc(table1)
 ```
+
+The vaccine appears to be associated with a slightly higher rate of COVID-19 infections compared to the placebo, which is unusual. Typically, one would expect the vaccine to reduce COVID-19 infection rates.
 
 ### Inferential (DrugUser)
 
@@ -189,5 +195,9 @@ DrugUserfish <- fisher.test(table1)
 DrugUserfish
 ```
 
+The odds suggests that, compared to the placebo group, those in the vaccine group are about 4.27 times more likely to experience COVID-19 infections.
+
 
 # Overall Results and Conclusions
+
+From this data of the 4 groups, the drug users should avoid the vaccine while the Gays, Male and femals should take the vaccine. Now of the 4 groups, who should take the vaccine? the Male, females, and LGBTQ groups should strongly consider taking the vaccine over the placebo.
