@@ -29,8 +29,13 @@ DrugUser = filter(FinalData, DrugUser =="yes")
 A new  preventative vaccine (covid921) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups by gender( guys and gals), drug use, and sexual orientation. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
 
 
+First we will need to seperate the groups in two factors, Male(M), Female(F), Gay(LGBTQ), and Drug users(Druguser)
+
+We'll be graphing and comparing who was prescribed either placebo or the vaccine, and weather it was effective or not on who got COVID-19 and who did not.
 
 ## Males
+
+### Barplot(Males)
 
 ```{r}
 dd2 <- M %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
@@ -80,6 +85,8 @@ Based on the data provided, the Covid vaccine appears to be associated with a hi
 
 ## Females
 
+### Barplot(Female)
+
 ```{r}
 dd2 <- F %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
 
@@ -95,7 +102,7 @@ basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
-I'm not surprised when I look above at our data on the gals, its almost identical to the guys! However looking at the percentage it looks like half the gals who took placebo still got infected compared to the gals that took the vaccine.
+I'm not surprised when I look above at our data on the gals, its almost identical to the guys! However looking at the percentage it looks like half the gals who took placebo (65%) still got infected compared to the gals that took the vaccine (35%).
 
 ### Numerical resuts (Female)
 
@@ -117,9 +124,11 @@ Ffish <- fisher.test(table1)
 Ffish
 ```
 
-The vaccine appears to significantly reduce the risk of infection compared to the placebo, with the odds ratio supporting this conclusion.
+The vaccine appears to significantly reduce the risk of infection compared to the placebo, with the odds ratio of 4 times supporting this conclusion.
 
 ## LGBTQ
+
+### Barplot(LGBTQ)
 
 ```{r}
 dd2 <- LGBTQ %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
@@ -136,7 +145,7 @@ basicCC <- ggplot(dd2,aes(x=infected,y=prcnt*100,fill=treatment))
 basicCC + geom_bar(stat="identity", position = "dodge")
 ```
 
-From the graph above we can see that 80% of the gays that took the placebo still got covid compared to the gays that took the vaccine. 
+From the graph above we can see that 80% of the LGBTQ that took the placebo still got covid compared to the 20% of LGBTQ that took the vaccine. 
 
 ### Numerical resuts (LGBTQ)
 
@@ -157,7 +166,11 @@ LGBTQfish <- fisher.test(table1)
 LGBTQfish
 ```
 
+This test reveal a significant relationship between both vaccine vs. placebo and infection status. Specifically, those in the vaccine group have a higher rate of COVID-19 infections compared to those in the placebo group.
+
 ## Druggies
+
+### Barplot(DrugUser)
 
 ```{r}
 dd2 <- DrugUser %>% group_by(infected,treatment) %>% summarize(count=n()) %>% mutate(prcnt=count/sum(count))
@@ -200,4 +213,4 @@ The odds suggests that, compared to the placebo group, those in the vaccine grou
 
 # Overall Results and Conclusions
 
-From this data of the 4 groups, the drug users should avoid the vaccine while the Gays, Male and femals should take the vaccine. Now of the 4 groups, who should take the vaccine? the Male, females, and LGBTQ groups should strongly consider taking the vaccine over the placebo.
+From this data of the 4 groups, who should take the vaccine? The drug users should avoid the vaccine as the vaccine group has a percentage of 3.61% infections compared to 0.33% in the placebo group. The Male group seems beneficial for the group to take the vaccine as it has a lower infection rate (1.02%) compared to the placebo (2.82%). Additionally, a higher percentage of individuals in the vaccine group remain 98.98% uninfected compared to the placebo 97.18% group. It would also be a good idea for females to take the vaccine as the infection rate in the vaccine group which is 1.4% is lower than that in the placebo group which is 2.57%. This suggests that the vaccine is effective at reducing the risk of infection. the LGBTQ groups should strongly consider taking the vaccine over the placebo as it shows a clear benefit in preventing infections. The infection rate in the vaccine group (0.77%) is substantially lower than that in the placebo group (3.2%). This indicates that the vaccine is highly effective at reducing the risk of infection.
